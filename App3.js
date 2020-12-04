@@ -42,7 +42,10 @@ check=()=>{
       console.log(publicKey)
       alert('publickey: ',publicKey)
       sendPublicKeyToServer(publicKey)
-    })}
+    })
+    .catch(err=>console.log(err))
+  
+  }
     catch(error){
         alert('Catched error: ',error)
         console.log('catched: ',error)
@@ -89,6 +92,7 @@ check=()=>{
       })
       .then((resultObject) => {
         const { success, signature } = resultObject
+        console.log(resultObject)
     
         if (success) {
           console.log(signature)
@@ -96,6 +100,7 @@ check=()=>{
           verifySignatureWithServer(signature, payload)
         }
       })
+      .catch(err=>console.log(err))
   }
 
   simpleprompt=()=>{
@@ -120,35 +125,33 @@ check=()=>{
   render() {
     return (
       <View>
-        <TouchableHighlight onPress={this.check} style={{marginTop:15}}>
-          <Text>
-            Check if supported or not
+        <TouchableHighlight onPress={this.check} style={{marginTop:15,backgroundColor:'lightblue',height:50,width:150,alignSelf:'center',justifyContent:'center'}}>
+          <Text style={{alignSelf:'center',padding:5}}>
+            Check if biometric is supported or not
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.createKey} style={{marginTop:15}}>
-          <Text>
+        <TouchableHighlight onPress={this.createKey}  style={{marginTop:15,backgroundColor:'lightblue',height:50,width:150,alignSelf:'center',justifyContent:'center'}}>
+          <Text style={{alignSelf:'center',padding:5}}>
             Creates key
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.checkIfKeyExists} style={{marginTop:15}}>
-          <Text>
+        <TouchableHighlight onPress={this.checkIfKeyExists}  style={{marginTop:15,backgroundColor:'lightblue',height:50,width:150,alignSelf:'center',justifyContent:'center'}}>
+          <Text style={{alignSelf:'center',padding:5}}>
             Check if key exists
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.deleteKey} style={{marginTop:15}}>
-          <Text>
+        {/* <TouchableHighlight onPress={this.deleteKey}  style={{marginTop:15,backgroundColor:'lightblue',height:50,width:150,alignSelf:'center',justifyContent:'center'}}>
+          <Text style={{alignSelf:'center',padding:5}}>
             Delete key
           </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.createSignature} style={{marginTop:15}}>
-          <Text>
+        </TouchableHighlight> */}
+        {/* <TouchableHighlight onPress={this.createSignature}  style={{marginTop:15,backgroundColor:'lightblue',height:50,width:150,alignSelf:'center',justifyContent:'center'}}>
+          <Text style={{alignSelf:'center',padding:5}}>
             Create signature
           </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.simpleprompt} style={{marginTop:15}}>
-          <Text>
-            Prompt user for fingerprint
-          </Text>
+        </TouchableHighlight> */}
+        <TouchableHighlight onPress={this.simpleprompt}  style={{marginTop:15,backgroundColor:'lightblue',height:50,width:150,alignSelf:'center',justifyContent:'center'}}>
+          <Text style={{alignSelf:'center',padding:10}}>Prompt user for fingerprint</Text>
         </TouchableHighlight>
       </View>
     );
